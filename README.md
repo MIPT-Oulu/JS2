@@ -5,5 +5,6 @@ Implementation of "A Lightweight CNN and Joint Shape-Joint Space (JS2) Descripto
 
 Data:
 Multicenter Osteoarthritis Study (MOST): http://most.ucsf.edu/
+
 The Osteoarthritis Initiative (OAI): https://nda.nih.gov/oai/
 
