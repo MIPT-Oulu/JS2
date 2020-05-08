@@ -3,7 +3,9 @@ A Lightweight CNN and Joint Shape-Joint Space (JS2) Descriptor for Radiological 
 
 Implementation of "A Lightweight CNN and Joint Shape-Joint Space (JS2) Descriptor for Radiological Osteoarthritis Detection", MIUA 2020 paper.
 
-Data:
+![](https://github.com/MIPT-Oulu/JS2/Pictures/summary.png?raw=true)
+
+## Data:
 Multicenter Osteoarthritis Study (MOST): http://most.ucsf.edu/
 
 The Osteoarthritis Initiative (OAI): https://nda.nih.gov/oai/
