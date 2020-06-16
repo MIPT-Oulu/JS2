@@ -13,13 +13,15 @@ Multicenter Osteoarthritis Study (MOST): http://most.ucsf.edu/
 The Osteoarthritis Initiative (OAI): https://nda.nih.gov/oai/
 
 ## Setup
-1. Obtain OAI and MOST Data from the links above.
-2. Extract Landmarks (you can use BoneFinder software: http://bone-finder.com/).
-3. Save Dicom image and list of landmark points for each sample in a seperate `.npy` file.
+1. Obtain OAI and MOST Data from the links above. We can not distribute the data.
+2. Extract Landmarks using BoneFinder(BF) software: http://bone-finder.com/.
+3. Localize both left and right knee joints using BF landmarks.
+3. Save each joint and associated list of landmark points in a seperate `.npy` file (patientID_SIDE.npy, i.e. "9000099_L.npy").
 4. Prepare medial tibia crops and JSW measurements using `prepare_crops.py`. This will save marginal medial tibia ROI and JSW measurements (minJSW, fJSW, JS2, jointsize) as `.npy` files.
 
 ## Run
 1. Select the model `arg.model`
+2. Execute  
 
 ## License
 Please cite:
