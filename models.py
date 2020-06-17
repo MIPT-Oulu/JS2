@@ -136,7 +136,7 @@ class improved_bcnn(nn.Module):
 
         s = torch.nn.functional.normalize(s)
         s = F.dropout(F.relu(self.fcbn1(self.fc1(s))),
-                      p=self.dropout_rate, training=self.training)  # batch_size x 128
+                      p=self.dropout_rate, training=self.training)  
         s = self.fc2(s)
 
         return s
@@ -187,7 +187,7 @@ class antialised_cnn(nn.Module):
 
         s = s.contiguous().view(s.size(0), 128 * 6 * 6)
         s = F.dropout(F.relu(self.fcbn1(self.fc1(s))),
-                      p=self.dropout_rate, training=self.training)  # batch_size x 128
+                      p=self.dropout_rate, training=self.training)  
         s = self.fc2(s)
         return s
 
@@ -206,10 +206,9 @@ class jsw(nn.Module):
         # maxpool and relu x 3
         input = s
         N = jsw.size()[0]  # batch size
-        # print(jsw.size())
-        s = jsw.view(-1, 221)  # batch_size x 8*8*128
-        s = F.relu(self.fcbn1(self.fc1(s)))  # batch_size x 128
-        s = self.fc2(s)  # batch_size x 6
+        s = jsw.view(-1, 221)  
+        s = F.relu(self.fcbn1(self.fc1(s))) 
+        s = self.fc2(s)  
         return s
 
 
@@ -236,25 +235,22 @@ class combined(nn.Module):
         # maxpool and relu x 3
         input = s
         N = s.size()[0]  # batch size
-        # s = torch.cat((s,torch.tanh(s)), dim=1)
-        # print(s.size())
-        s = self.bn1(self.conv1(s))  # batch_size x 32 x 64 x 64
-        s = F.relu(F.max_pool2d(s, 2))  # batch_size x 32 x 32 x 32
+        s = self.bn1(self.conv1(s))  
+        s = F.relu(F.max_pool2d(s, 2))  
 
-        s = self.bn2(self.conv2(s))  # batch_size x 64 x 32 x 32
-        s = F.relu(F.max_pool2d(s, 2))  # batch_size x 64 x 16 x 16
+        s = self.bn2(self.conv2(s))  
+        s = F.relu(F.max_pool2d(s, 2)) 
 
-        s = self.bn3(self.conv3(s))  # batch_size x 128 x 16 x 16
-        s = F.relu(F.max_pool2d(s, 2))  # batch_size x 128 x 8 x 8
+        s = self.bn3(self.conv3(s)) 
+        s = F.relu(F.max_pool2d(s, 2)) 
 
         # flatten the output for each image
-        s = s.view(-1, 6 * 6 * 128)  # batch_size x 8*8*128
+        s = s.view(-1, 6 * 6 * 128)  
         s = torch.cat((s, jsw), dim=1)
 
-        # s = F.relu(self.fcbn1(self.fc1(s)))  # batch_size x 128
         s = F.dropout(F.relu(self.fcbn1(self.fc1(s))),
-                      p=self.dropout_rate, training=self.training)  # batch_size x 128
-        s = self.fc2(s)  # batch_size x 6
+                      p=self.dropout_rate, training=self.training)  
+        s = self.fc2(s) 
         return s
 
 
