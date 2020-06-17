@@ -1,8 +1,6 @@
 from __future__ import division
 from bilinear_layers import *
-
 from models_lpf import *
-
 
 
 class plain_model_3layers(nn.Module):
