@@ -36,11 +36,8 @@ class plain_model_3layers(nn.Module):
         s = self.bn3(self.conv3(s))
         s = F.relu(F.max_pool2d(s, 2))
 
-
         # flatten the output for each image
         s = s.view(-1, 5 * 5 * 128)
-
-
         s = F.dropout(F.relu(self.fcbn1(self.fc1(s))),
                       p=self.dropout_rate, training=self.training)  # batch_size x 128
         s = self.fc2(s)
@@ -158,8 +155,6 @@ class antialised_cnn(nn.Module):
         self.bn2 = nn.BatchNorm2d(64)
         self.d2 = Downsample(filt_size=filter_size, stride=2, channels=64, pad_off=-1)
 
-
-
         self.conv3 = nn.Conv2d(64, 128, kernel_size=3, padding=2)
         self.bn3 = nn.BatchNorm2d(128)
         self.d3 = Downsample(filt_size=filter_size, stride=2, channels=128, pad_off=-1)
@@ -190,8 +185,6 @@ class antialised_cnn(nn.Module):
                       p=self.dropout_rate, training=self.training)  
         s = self.fc2(s)
         return s
-
-
 
 
 class jsw(nn.Module):
@@ -252,7 +245,6 @@ class combined(nn.Module):
                       p=self.dropout_rate, training=self.training)  
         s = self.fc2(s) 
         return s
-
 
 
 class morphology(nn.Module):
